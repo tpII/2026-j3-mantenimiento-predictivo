@@ -1,0 +1,8 @@
+influxdb_data/
+grafana_data/
+nodered_data/
+mosquitto/data/
+mosquitto/log/
+.pio/
+.vscode/
+*.zip

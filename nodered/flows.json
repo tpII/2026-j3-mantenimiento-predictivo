@@ -1,0 +1,120 @@
+[
+    {
+        "id": "4dc1929b5d819412",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a54f4a90b2604494",
+        "type": "mqtt-broker",
+        "name": "mosquitto",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4b758056103a1797",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "influxDB",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "b330474899bf4249",
+        "type": "mqtt in",
+        "z": "4dc1929b5d819412",
+        "name": "",
+        "topic": "telemetria/mantenimiento",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "a54f4a90b2604494",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "aa28bdd785227bf2",
+                "3950055e32b0a51e"
+            ]
+        ]
+    },
+    {
+        "id": "aa28bdd785227bf2",
+        "type": "debug",
+        "z": "4dc1929b5d819412",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3950055e32b0a51e",
+        "type": "influxdb out",
+        "z": "4dc1929b5d819412",
+        "influxdb": "4b758056103a1797",
+        "name": "",
+        "measurement": "vibracion",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "UNLP Informatica",
+        "bucket": "telemetria",
+        "x": 450,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0657f47916ba4f6f",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-influxdb": "0.7.0"
+        }
+    }
+]

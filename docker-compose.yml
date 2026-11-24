@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Broker MQTT (por si en el futuro migras de HTTP a MQTT)
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt_broker
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+    restart: always
+
+  # Node-RED (Ingesta de datos HTTP / MQTT)
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered_app
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered_data:/data
+    restart: always
+
+  # InfluxDB v2 (Base de datos de Series Temporales)
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb_db
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb_data:/var/lib/influxdb2
+    restart: always
+
+  # Grafana (Visualización e Históricos)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_dashboard
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+    restart: always

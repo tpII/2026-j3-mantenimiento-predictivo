@@ -1,0 +1,14 @@
+{
+  "remover_dc": true,
+  "escala": 0.6668329238891602,
+  "muestras": 256,
+  "paso": 128,
+  "canales": 3,
+  "clases": [
+    "0: Apagado",
+    "1: Normal",
+    "2: Anomalo"
+  ],
+  "entrada_scale": 0.07751137018203735,
+  "entrada_zero_point": 3
+}
